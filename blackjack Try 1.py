@@ -14,8 +14,12 @@ def deal():
     ##Your code here##
     random1 = random.randint(1,11)
     random2 = random.randint (1,11)
-    curTotal = random1 + random2
-    return curTotal
+    random3 = random.randint (1,11)
+    random4 = random.randint (1,11)
+    CurTotal = random1 + random2
+    DealerCurTotal = random3 + random4
+    return CurTotal
+    return DealerCurTotal
     pass
 
 
@@ -35,8 +39,10 @@ def hit(curTotal):
     """
     ##Your code here##
     NewCard = random.randint(1,11)
-    NewTotal = NewCard + CurTotal
-    
+    playerScore = NewCard + CurTotal
+    if (playerScore > 21 and NewCard == 11):
+        NewCard = 1
+    return playerScore
     pass
 
 
@@ -48,12 +54,16 @@ def playerTurn(playerScore):
     The player's final score should be returned
 
     Parameters:
-        plaerScore: The player's current score
+        playerScore: The player's current score
     Return:
         The player's score after their turn is complete
     """
     ##Your code here##
-    
+    HitOrStay = input()
+    while (HitOrStay != "stay" or playerScore < 22):
+        HitOrStay = input("Would you like to hit or stay?")
+        hit(curTotal)
+        print("You have: " + playerScore)
     pass
 
 
@@ -69,6 +79,13 @@ def dealerTurn(dealerScore):
         The dealer's score after their turn is complete
     """
     ##Your code here##
+    dealerScore = DealerCurTotal
+    while (dealerScore < 22 or dealerScore > 16):
+        NewDealerCard = random.randint(1,11)
+        dealerScore = DealerCurTotal + NewDealerCard
+        if (dealerScore > 21 and NewDealerCard == 11):
+            NewDealerCard = 1
+        print("Dealer has: " + dealerScore)
     pass
 
 
@@ -87,6 +104,10 @@ def main():
         None
     """
     ##Your code here##
+    deal()
+    print("Would you like to hit or stay?")
+    playerturn(playerScore)
+    dealerTurn(dealerScore)
     pass
 
 #Call the main function to start the program
