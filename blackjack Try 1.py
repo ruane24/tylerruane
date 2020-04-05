@@ -12,14 +12,16 @@ def deal():
         The sum of the cards after the deal
     """
     ##Your code here##
-    random1 = random.randint(1,11)
+    ##identify variables for cards for dealer and player##
+    random1 = random.randint (1,11)
     random2 = random.randint (1,11)
     random3 = random.randint (1,11)
     random4 = random.randint (1,11)
     CurTotal = random1 + random2
     DealerCurTotal = random3 + random4
-    return CurTotal
-    return DealerCurTotal
+    ##Let player know the totals of both them and the dealer##
+    print("You have: " + str(CurTotal))
+    print("Dealer has: " + str(DealerCurTotal))
     pass
 
 
@@ -38,8 +40,10 @@ def hit(curTotal):
         The total of the player's cards after this card is dealt
     """
     ##Your code here##
+    ##Get a random number for the hit card##
     NewCard = random.randint(1,11)
     playerScore = NewCard + CurTotal
+    ##Change 11 to a 1 if it busts them##
     if (playerScore > 21 and NewCard == 11):
         NewCard = 1
     return playerScore
@@ -59,11 +63,12 @@ def playerTurn(playerScore):
         The player's score after their turn is complete
     """
     ##Your code here##
-    HitOrStay = input()
+    ##Ask if they would like to hit or stay##
+    HitOrStay = input("Would you like to hit or stay?")
     while (HitOrStay != "stay" or playerScore < 22):
-        HitOrStay = input("Would you like to hit or stay?")
         hit(curTotal)
-        print("You have: " + playerScore)
+        print("You have: " + str(playerScore))
+        input("Would you like to hit or stay?")
     pass
 
 
@@ -80,6 +85,7 @@ def dealerTurn(dealerScore):
     """
     ##Your code here##
     dealerScore = DealerCurTotal
+    ##Give dealer their strategy##
     while (dealerScore < 22 or dealerScore > 16):
         NewDealerCard = random.randint(1,11)
         dealerScore = DealerCurTotal + NewDealerCard
@@ -104,10 +110,16 @@ def main():
         None
     """
     ##Your code here##
+    random1 = random.randint (1,11)
+    random2 = random.randint (1,11)
+    random3 = random.randint (1,11)
+    random4 = random.randint (1,11)
+    CurTotal = random1 + random2
+    DealerCurTotal = random3 + random4
+    NewCard = random.randint(1,11)
+    playerScore = NewCard + CurTotal
     deal()
-    print("Would you like to hit or stay?")
-    playerturn(playerScore)
-    dealerTurn(dealerScore)
+    playerTurn(playerScore)
     pass
 
 #Call the main function to start the program
